@@ -3,12 +3,16 @@
     <div class="container">
       <router-link class="navbar-brand" to="/">Vehículos</router-link>
       <div>
+        <!-- Enlaces para login y registro -->
         <router-link v-if="!user" class="btn btn-outline-primary me-2" to="/login">Iniciar Sesión</router-link>
         <router-link v-if="!user" class="btn btn-outline-success" to="/register">Registrarse</router-link>
+
+        <!-- Botón para cerrar sesión -->
         <button v-if="user" class="btn btn-danger" @click="logout">Cerrar Sesión</button>
       </div>
     </div>
   </nav>
+  <router-view></router-view> <!-- Asegúrate de incluir router-view -->
 </template>
 
 <script>
@@ -21,33 +25,9 @@ export default {
   methods: {
     ...mapActions(['logout']),
     logout() {
-      this.logout();
+      this.logout(); 
       this.$router.push('/login'); // Redirigir al login
     },
   },
 };
 </script>
-
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-/*
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}*/
-</style>

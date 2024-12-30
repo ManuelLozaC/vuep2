@@ -120,5 +120,16 @@ export default createStore({
         throw new Error('No se pudo eliminar el vehículo');
       }
     },
+
+    async editUser({ commit }, user) {
+      try {
+        const { data } = await axios.put(`http://localhost:3000/users/${user.id}`, user);
+        commit('setUser', data); // Actualizar el estado local
+        alert('Usuario actualizado exitosamente.');
+      } catch (error) {
+        console.error('Error al actualizar usuario:', error);
+        throw new Error('No se pudo actualizar el usuario');
+      }
+    },
   },
 });
